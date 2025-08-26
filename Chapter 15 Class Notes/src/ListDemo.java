@@ -57,7 +57,7 @@ public class ListDemo
                 iterator.remove();
             }
         }
-        // use the import to getinformation from a link on the internet
+        // use the import to getinformation afrom a link on the internet
         System.out.println("After removing Tony:");
         System.out.println(staff);
     }
