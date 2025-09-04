@@ -12,7 +12,13 @@ public class WordAnalysis
 {
     public static void main(String[] args)
         throws FileNotFoundException
-    {
+    {   Set<String> dictionary = readWords("Chapter 15 Class Notes/src/words");
+        Set<String> documentWords = readWords("Chapter 15 Class Notes/src/war-and-peace.txt");
+        for (String e:documentWords){
+            if(!dictionary.contains(e)){
+                System.out.println(e);
+            }
+        }
     }
 
     /**
@@ -24,7 +30,14 @@ public class WordAnalysis
     */
     public static Set<String> readWords(String filename)
         throws FileNotFoundException
-    {
-        return null;
+    {   Set<String> words = new HashSet<>();
+        Scanner scan = new Scanner(new File(filename), "UTF-8");
+        scan.useDelimiter("[^a-zA-Z]+");
+        while (scan.hasNext()) {
+            words.add(scan.next().toLowerCase());
+
+        }
+        return words; 
     }
+
 }
