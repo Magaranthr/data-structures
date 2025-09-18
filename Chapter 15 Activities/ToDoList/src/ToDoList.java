@@ -12,15 +12,17 @@ import java.util.Scanner;
 public class ToDoList
 {
     // Instance variable(s)
-    . . .
+    PriorityQueue<Task> tasks;
+
 
     /**
      * Constructor
     */
+
     public ToDoList()
     {
-        // Complete this
-        . . .
+        tasks  = new PriorityQueue<Task>();
+        
     }
 
     /**
@@ -60,7 +62,15 @@ public class ToDoList
     public void addTask(String optionStr)
     {
         // Complete this method
-        . . .
+        if(!(optionStr.contains("1") || optionStr.contains("2") || optionStr.contains("3") || optionStr.contains("4") || optionStr.contains("5") || optionStr.contains("6") || optionStr.contains("7") || optionStr.contains("8") || optionStr.contains("9"))){
+            System.out.println("The priority must be an integer between 1 and 9.");
+            return;
+        }
+        int priority= Integer.parseInt(optionStr.substring(4,5));
+        String description=optionStr.substring(5);
+        Task task = new Task(priority,description);
+        tasks.add(task);
+
             
             
     }
@@ -74,7 +84,13 @@ public class ToDoList
         Task next = null;
         
         // Complete this method
-        . . .
+        if(tasks.size()==0) {
+            return;
+        
+        }
+        else
+        System.out.println(tasks.remove());
+
         
         
         if (next == null)
