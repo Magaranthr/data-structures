@@ -89,13 +89,13 @@ public class ToDoList
         
         }
         else
-        System.out.println(tasks.remove());
+        System.out.println(tasks.remove().getDescription());
 
         
         
         if (next == null)
         {
-            System.out.println("There are no tasks in the list.");
+            return;
         } else
         {
             System.out.println(next.getDescription());
