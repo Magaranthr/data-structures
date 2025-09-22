@@ -15,20 +15,45 @@ import java.util.Stack;
 */
 public class HTMLChecker
 {
-    public static void main(String[] args)
+     public static void main(String[] args)
     {
-        String filename = "src/TagSample1.html";
+        String filename = "Chapter 15 Activities\\HTMLChecker\\src\\TagSample1.html";
 
         try (Scanner in = new Scanner(new File(filename)))
         {
-            // Your code goes here
-            . . .
+            Stack<String> stack = new Stack<>();
 
+            while (in.hasNext()) {
+                String tag = in.next();
+
+                if (tag.startsWith("</")) {
+                    if (stack.isEmpty()) {
+                        System.out.println("Error: no opening tag for " + tag);
+                        return;
+                    }
+
+                    String openTag = stack.pop();
+                    String expectedClose = "</" + openTag.substring(1);
+
+                    if (!tag.equals(expectedClose)) {
+                        System.out.println("Error: expected " + expectedClose + " but found " + tag);
+                        return;
+                    }
+
+                } else if (tag.startsWith("<") && !tag.startsWith("</")) {
+                    stack.push(tag);
+                }
+            }
+
+            if (stack.isEmpty()) {
+                System.out.println("All tags properly nested.");
+            } else {
+                System.out.println("Error: unclosed tag(s) remaining.");
+            }
 
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
         }
-
     }
 }

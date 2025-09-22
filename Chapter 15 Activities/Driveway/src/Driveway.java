@@ -10,6 +10,7 @@ public class Driveway
     /**
       * Stack representing the cars in the driveway.
     */
+
     private Stack<Integer> driveway;
     /**
       * Stack representing the cars in the street.
@@ -19,11 +20,13 @@ public class Driveway
     /**
       * Constructor.
     */
+
     public Driveway()
     {
         // Complete the constructor
-        ...
-
+        
+        street=new Stack<Integer>();
+        driveway=new Stack<Integer>();
 
     }
 
@@ -35,7 +38,7 @@ public class Driveway
     public void add(int licensePlate)
     {
         // Complete this method
-        ...
+        driveway.push(licensePlate);
 
 
     }
@@ -48,23 +51,39 @@ public class Driveway
     public void remove(int licensePlate)
     {
         // Complete this method
-        ...
 
-
+    boolean found = false;
+    while (!driveway.isEmpty()) {
+        int car = driveway.pop();
+        if (car == licensePlate) {
+            found = true;
+            break;
+        } else {
+            street.push(car);
+        }
     }
+
+    if (!found) {
+        System.out.println("Car with license plate " + licensePlate + " not found in driveway.");
+    }
+
+    while (!street.isEmpty()) {
+        driveway.push(street.pop());
+    }
+}
 
     /**
       * Prints the driveway and street details to the screen.
     */
     public void print()
     {
-        System.out.println("In Driveway, starting at first in (one license plate per line):");
-        // Print the cars in the driveway here
-        ...
-
-        System.out.println("In Street, starting at first in (one license plate per line):");
-        // Print the cars in the street here
-        ...
-
+         System.out.println("In Driveway, starting at first in (one license plate per line):");
+    for (int i = 0; i < driveway.size(); i++) {
+        System.out.println(driveway.get(i));
     }
+
+    System.out.println("In Street, starting at first in (one license plate per line):");
+    for (int i = 0; i < street.size(); i++) {
+        System.out.println(street.get(i));
+    }}
 }
