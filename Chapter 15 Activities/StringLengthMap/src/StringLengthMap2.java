@@ -18,22 +18,24 @@ public class StringLengthMap2
         {
 
             // Create your map here
-            
+            Map<Integer, String> map = new TreeMap<>();
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
+                if (word.isEmpty()) continue; // skip empty words
                 Integer len = word.length();
 
                 // Update the map here
                 // Use the Java 8 merge() method
-                
-
-
+                map.merge(len, word, (existing, newWord) -> existing + ", " + newWord);
             }
 
             // Print the strings, in increasing order of their length
             // Use this format: 1: i, a, i
+            for (Map.Entry<Integer, String> entry : map.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
