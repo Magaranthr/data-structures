@@ -18,23 +18,24 @@ public class FirstLetterMap
         {
 
             // Create your map here
-            ...
+            Map<Character, Set<String>> map = new TreeMap<>();
 
             while (in.hasNext())
             {
                 String word = clean(in.next());
+                if (word.isEmpty()) continue; // skip empty words
                 Character c = word.charAt(0);
 
                 // Update the map here
                 // Modify Worked Example 15.1
-                . . .
-
-
+                map.computeIfAbsent(c, k -> new TreeSet<>()).add(word);
             }
 
             // Print the map here in this form
             // a: [a, able, aardvark]
-            . . .
+            for (Map.Entry<Character, Set<String>> entry : map.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
         } catch (FileNotFoundException e)
         {
             System.out.println("Cannot open: " + filename);
