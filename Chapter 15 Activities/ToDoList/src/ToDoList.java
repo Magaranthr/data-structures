@@ -61,18 +61,38 @@ public class ToDoList
     */
     public void addTask(String optionStr)
     {
-        // Complete this method
-        if(!(optionStr.contains("1") || optionStr.contains("2") || optionStr.contains("3") || optionStr.contains("4") || optionStr.contains("5") || optionStr.contains("6") || optionStr.contains("7") || optionStr.contains("8") || optionStr.contains("9"))){
+        // Parse input after the "add" command. Expected format: "add <priority> <description>"
+        if (optionStr == null) {
             System.out.println("The priority must be an integer between 1 and 9.");
             return;
         }
-        int priority= Integer.parseInt(optionStr.substring(4,5));
-        String description=optionStr.substring(5);
-        Task task = new Task(priority,description);
-        tasks.add(task);
 
-            
-            
+        // Remove the leading "add" and trim
+        String rest = optionStr.length() >= 3 ? optionStr.substring(3).trim() : "";
+        if (rest.isEmpty()) {
+            System.out.println("The priority must be an integer between 1 and 9.");
+            return;
+        }
+
+        // Split into priority token and the rest (description)
+        String[] parts = rest.split("\\s+", 2);
+        String prioStr = parts[0];
+
+        // Validate priority is a single digit between 1 and 9
+        if (prioStr.length() != 1 || !Character.isDigit(prioStr.charAt(0))) {
+            System.out.println("The priority must be an integer between 1 and 9.");
+            return;
+        }
+
+        int priority = prioStr.charAt(0) - '0';
+        if (priority < 1 || priority > 9) {
+            System.out.println("The priority must be an integer between 1 and 9.");
+            return;
+        }
+
+        String description = parts.length > 1 ? parts[1].trim() : "";
+        Task task = new Task(priority, description);
+        tasks.add(task);
     }
 
     /**
@@ -81,24 +101,12 @@ public class ToDoList
     */
     public void nextTask()
     {
-        Task next = null;
-        
-        // Complete this method
-        if(tasks.size()==0) {
+        // Remove and print the next task (most urgent). If the queue is empty, do nothing.
+        if (tasks.isEmpty()) {
             return;
-        
         }
-        else
-        System.out.println(tasks.remove().getDescription());
 
-        
-        
-        if (next == null)
-        {
-            return;
-        } else
-        {
-            System.out.println(next.getDescription());
-        }
+        Task next = tasks.remove();
+        System.out.println(next.getDescription());
     }
 }

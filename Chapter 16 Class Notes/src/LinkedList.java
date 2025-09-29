@@ -9,18 +9,37 @@ import java.util.NoSuchElementException;
 public class LinkedList
 {
 
-
+    private node first;
     /**
         Constructs an empty linked list.
     */
+    static class node
+    {
+        Object data;
+        node next;
+        public node(Object data)
+        {
+            this.data = data;
+            this.next = null;
+        }
+    }
+    public LinkedList()
+    {
+        first = null;
+    }
 
-
-
+// if 
 
     /**
         Returns the first element in the linked list.
         @return the first element in the linked list
     */
+    public Object getFirst()
+    {
+        if (first ==null)
+            throw new NoSuchElementException();
+        else
+            return first.data;
 
 
 

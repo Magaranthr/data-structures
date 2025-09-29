@@ -4,7 +4,6 @@ public class Grid
 {
     private static final int SIZE = 10;
     int[][] pixels = new int[SIZE][SIZE];
-    . . .
 
     /**
      * Flood fill, starting with the given row and column.
@@ -13,7 +12,8 @@ public class Grid
     {
         int target = pixels[row][column];
         int replacement = 1;
-        if (target == replacement) return;
+        if (target == replacement) {
+            return;}
 
         Stack<int[]> stack = new Stack<>();
         stack.push(new int[]{row, column});
