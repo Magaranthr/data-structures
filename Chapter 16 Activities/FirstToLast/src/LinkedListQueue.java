@@ -23,10 +23,14 @@ public class LinkedListQueue
     */
     public void firstToLast()
     {
-        . . .
+        if (head == null || head.next == null)
+            return;
 
-
-
+        Node oldH = head;
+        head = head.next;
+        oldH.next = null;
+        tail.next = oldH;
+        tail = oldH;
     }
 
     /**

@@ -24,9 +24,13 @@ public class LinkedList
     */
     public int size()
     {
-        . . .
-    }
-
+        int count = 0;
+        Node current = first;
+        while (current != null) {
+            count++;
+            current = current.next;
+        }
+        return count;
     /**
         Returns the first element in the linked list.
         @return the first element in the linked list
