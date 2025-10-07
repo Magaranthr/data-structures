@@ -48,7 +48,7 @@ public class LinkedListQueue
     */
     public void add(Object newElement)
     {
-        if (tail == null)    // head must also be null
+        if (tail == null)    
         {
             Node newNode = new Node();
             newNode.data = newElement;
