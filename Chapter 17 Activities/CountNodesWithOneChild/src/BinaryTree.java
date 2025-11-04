@@ -107,20 +107,35 @@ public class BinaryTree
     {
         int count = 0;
         if(root.left != null || root.right != null)
-        {{
-            if(root.left == null || root.right == null)
+        {  {
+            if(root.left != null  && root.right == null)
             {
                 count++;
             }
-            BinaryTree leftSubtree = this.left();
-            BinaryTree rightSubtree = this.right();
-            count += leftSubtree.countNodesWithOneChild();
-            count += rightSubtree.countNodesWithOneChild();
+            else if (root.left == null && root.right != null)
+            {
+                count++;
+                
+            }
+            } 
+        }
+        else
+        {
+            return 0;
         }
         
-        
-
-    }
+        if(root.left != null)
+        {
+            BinaryTree leftSubtree = new BinaryTree();
+            leftSubtree.root = root.left;
+            count += leftSubtree.countNodesWithOneChild();
+        }
+        if(root.right != null)
+        {
+            BinaryTree rightSubtree = new BinaryTree();
+            rightSubtree.root = root.right;
+            count += rightSubtree.countNodesWithOneChild();
+        }
         return count;
     }
 }
