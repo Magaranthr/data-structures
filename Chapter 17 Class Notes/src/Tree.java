@@ -10,14 +10,20 @@ public class Tree
     static class Node
     {
         
-
+        public Object data;
+        public List<Node> children;
         /**
             Computes the size of the subtree whose root is this node.
             @return the number of nodes in the subtree
         */
         public int size()
         {
-            return 0;
+            int total=1;
+            for (Node child : children)
+            {
+                total += child.size();
+            }
+            return total;
         }
     }
 
